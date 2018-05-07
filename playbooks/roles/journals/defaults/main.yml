@@ -16,16 +16,16 @@ JOURNALS_GIT_IDENTITY: !!null
 #
 # vars are namespace with the module name.
 #
-journals_service_name: "{{ 'journals' if JOURNALS_ENABLED else 'None' }}"
+journals_service_name: "{{ 'journals' if JOURNALS_ENABLED|default(false) else 'None' }}"
 journals_gunicorn_port: 8606
 
 journals_environment:
   JOURNALS_CFG: "{{ COMMON_CFG_DIR }}/{{ journals_service_name }}.yml"
 
-journals_user: "{{ journals_service_name if JOURNALS_ENABLED else 'None' }}"
+journals_user: "{{ journals_service_name if JOURNALS_ENABLED|default(false) else 'None' }}"
 journals_home: "{{ COMMON_APP_DIR }}/{{ journals_service_name }}"
 journals_code_dir_path: "{{ journals_home }}/{{ journals_service_name }}"
-journals_code_dir: "{{ journals_code_dir_path if JOURNALS_ENABLED else 'None' }}"
+journals_code_dir: "{{ journals_code_dir_path if JOURNALS_ENABLED|default(false) else 'None' }}"
 
 #
 # OS packages
@@ -40,7 +40,7 @@ journals_debian_pkgs:
 JOURNALS_NGINX_PORT: "1{{ journals_gunicorn_port }}"
 JOURNALS_SSL_NGINX_PORT: "4{{ journals_gunicorn_port }}"
 
-JOURNALS_DEFAULT_DB_NAME: "{{ 'journals' if JOURNALS_ENABLED else '' }}"
+JOURNALS_DEFAULT_DB_NAME: "{{ 'journals' if JOURNALS_ENABLED|default(false) else '' }}"
 JOURNALS_MYSQL: 'localhost'
 # MySQL usernames are limited to 16 characters
 JOURNALS_MYSQL_USER: 'journ001'
