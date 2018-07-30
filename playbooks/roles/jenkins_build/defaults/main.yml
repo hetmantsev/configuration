@@ -9,7 +9,6 @@ build_jenkins_configuration_scripts:
   - 3mainConfiguration.groovy
   - 3setGlobalProperties.groovy
   - 3shutdownCLI.groovy
-  - 4configureEc2Plugin.groovy
   - 4configureGHOAuth.groovy
   - 4configureGHPRB.groovy
   - 4configureGit.groovy
@@ -79,9 +78,6 @@ build_jenkins_plugins_list:
     group: 'org.jenkins-ci.plugins'
   - name: 'docker-commons'
     version: '1.8'
-    group: 'org.jenkins-ci.plugins'
-  - name: 'ec2'
-    version: '1.28'
     group: 'org.jenkins-ci.plugins'
   - name: 'email-ext'
     version: '2.62'
@@ -273,9 +269,6 @@ JENKINS_GITHUB_CONFIG: ''
 
 # hipchat
 build_jenkins_hipchat_room: 'testeng'
-
-# ec2
-build_jenkins_instance_cap: '500'
 
 # seed
 build_jenkins_seed_name: 'manually_seed_one_job'
