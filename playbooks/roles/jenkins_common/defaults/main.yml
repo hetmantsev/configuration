@@ -26,7 +26,6 @@ jenkins_common_git_home: '{{ jenkins_common_home }}/git'
 jenkins_common_configuration_scripts: []
 jenkins_common_non_plugin_template_files:
   - credentials
-  - ec2_config
   - email_ext_config
   - ghprb_config
   - git_config
@@ -41,7 +40,6 @@ jenkins_common_non_plugin_template_files:
   - properties_config
   - security
   - seed_config
-  - splunk_config
 
 # Jenkins default config values
 jenkins_common_jvm_args: ''
@@ -72,16 +70,6 @@ JENKINS_MAIN_ADMIN_EMAIL: 'jenkins <admin@example.org>'
 
 # plugins
 jenkins_common_plugins_list: []
-
-# ec2
-jenkins_common_use_instance_profile_for_creds: false
-jenkins_common_instance_cap: ''
-
-JENKINS_EC2_PRIVATE_KEY: ''
-JENKINS_EC2_REGION: ''
-JENKINS_EC2_ACCESS_KEY_ID: ''
-JENKINS_EC2_SECRET_ACCESS_KEY: ''
-JENKINS_EC2_AMIS: []
 
 # ghprb
 jenkins_common_ghprb_server: 'https://api.github.com'
@@ -218,24 +206,3 @@ jenkins_common_email_default_postsend_script_path: ''
 # mask passwords
 JENKINS_MASK_PASSWORDS_CLASSES: []
 JENKINS_MASK_PASSWORDS_PAIRS: []
-
-# splunk
-jenkins_common_splunk_enabled: true
-jenkins_common_splunk_use_ssl: true
-jenkins_common_splunk_raw_events_enabled: true
-jenkins_common_splunk_batch_size: 4096
-jenkins_common_splunk_retries: 3
-jenkins_common_splunk_ignored_jobs: ''
-jenkins_common_splunk_master_hostname: ''
-jenkins_common_splunk_event_source: ''
-jenkins_common_splunk_script_type: 'path'
-jenkins_common_splunk_script_path: ''
-jenkins_common_splunk_file_path: '{{ role_path }}/files/splunk/*'
-jenkins_common_splunk_metadata:
-    - data_source: 'Default'
-      config_item: 'Source Type'
-      value: 'json:jenkins:old'
-JENKINS_SPLUNK_HOSTNAME: ''
-JENKINS_SPLUNK_PORT: 8088
-JENKINS_SPLUNK_APP_URL: ''
-JENKINS_SPLUNK_TOKEN: ''
