@@ -1,4 +1,4 @@
-build_jenkins_user_uid: 1002
+build_jenkins_user_uid: 1003
 build_jenkins_group_gid: 1004
 build_jenkins_version: jenkins_2.89.4
 build_jenkins_jvm_args: '-Djava.awt.headless=true -Xmx16384m -DsessionTimeout=60'
@@ -18,7 +18,6 @@ build_jenkins_configuration_scripts:
   - 4configureMailerPlugin.groovy
   - 4configureMaskPasswords.groovy
   - 4configureSecurity.groovy
-  - 4configureSplunk.groovy
   - 5configureEmailExtension.groovy
   - 5createLoggers.groovy
 
@@ -201,9 +200,6 @@ build_jenkins_plugins_list:
   - name: 'shiningpanda'
     version: '0.23'
     group: 'org.jenkins-ci.plugins'
-  - name: 'splunk-devops'
-    version: '1.6.4'
-    group: 'com.splunk.splunkins'
   - name: 'ssh-agent'
     version: '1.14'
     group: 'org.jenkins-ci.plugins'
@@ -312,28 +308,3 @@ build_jenkins_log_list:
         log_level: 'ALL'
       - name: 'hudson.plugins.git.GitSCM'
         log_level: 'ALL'
-
-# splunk
-build_jenkins_splunk_ignored_jobs: '(^((?!edx-(platform|e2e)|gather).)*$)|.*private.*'
-build_jenkins_splunk_script_type: 'inline'
-build_jenkins_splunk_script_path: 'splunk/splunk.groovy'
-build_jenkins_splunk_file_path: '{{ role_path }}/../jenkins_build/files/splunk/splunk.groovy'
-build_jenkins_splunk_metadata:
-  - data_source: 'default'
-    config_item: 'sourcetype'
-    value: 'json:jenkins:old'
-  - data_source: 'BUILD_REPORT'
-    config_item: 'sourcetype'
-    value: 'build_report'
-  - data_source: 'BUILD_EVENT'
-    config_item: 'sourcetype'
-    value: 'build_event'
-  - data_source: 'CONSOLE_LOG'
-    config_item: 'sourcetype'
-    value: 'console_log'
-  - data_source: 'QUEUE_INFO'
-    config_item: 'sourcetype'
-    value: 'queue_information'
-  - data_source: 'SLAVE_INFO'
-    config_item: 'sourcetype'
-    value: 'slave_information'
